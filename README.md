@@ -11,8 +11,7 @@
 
 ## Abstract
 
-This repository contains the official implementation of the study **“Near–Real-Time Conflict-Related Fire Detection Using Unsupervised Deep Learning and Satellite Imagery.”**  
-We adapt the **RaVAEn (Resolution-Agnostic Variational Autoencoder)** framework to detect conflict-related fires and burn scars in Sudan using high-resolution satellite imagery.
+This repository contains the official implementation of the study **“Near–Real-Time Conflict-Related Fire Detection Using Unsupervised Deep Learning and Satellite Imagery.”** We adapt the **RaVAEn** framework to detect conflict-related fires and burn scars in Sudan using high-resolution satellite imagery with a **resolution-agnostic Variational Autoencoder (VAE)**.
 
 Unlike the original RaVAEn model designed for coarse-resolution disaster monitoring on-board satellites, this version is optimized for **3 m resolution PlanetScope imagery**, enabling detection of small, fragmented fires in active war zones. The model employs a lightweight, unsupervised approach that learns generalized visual primitives from diverse land-cover data (WorldFloods) and identifies fire-affected areas as anomalies in the latent space. The system delivers actionable insights within **24–30 hours** of image acquisition.
 
@@ -48,8 +47,7 @@ The pipeline processes **4-band PlanetScope imagery** (Red, Green, Blue, NIR).
 
 ---
 
-### 2. Model Architecture (`ResolutionAdaptiveVAE`)
-
+### 2. Model Architecture
 The core model, defined in `deeper_vae.py`, is a modified Variational Autoencoder that:
 
 1. **Decomposes** inputs into low-frequency structural components and high-frequency texture components.
@@ -65,7 +63,7 @@ This design enables robustness to sensor resolution changes and texture fragment
 Inference compares **temporally paired tiles** (Pre-incident vs. Post-incident).
 
 - **Metric:**  
-  Cosine distance between latent vectors \( z_{pre} \) and \( z_{post} \).
+  Cosine distance between latent vectors <b>z</b><sub>pre</sub> and <b>z</b><sub>post</sub>.
 
 - **Baseline:**  
   A pixel-wise cosine distance method is included as a scientific control.
@@ -96,9 +94,3 @@ Commercial **PlanetScope Level 3B Ortho Scene (Analytic, 4-band)** imagery is us
 
 ---
 
-## Usage
-
-### Installation
-
-```bash
-pip install torch torchvision pytorch-lightning
